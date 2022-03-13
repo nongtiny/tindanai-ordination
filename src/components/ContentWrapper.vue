@@ -90,7 +90,7 @@
         </div>
       </div>
       <p class="mt-10 text-center">
-        จึงกราบเรียนญาติมิตรและท่านที่เคารพนับถือ<br class="sm:hidden">ร่วมอนุโมธนาการอุปสมบทในครั้งนี้
+        กราบเรียนญาติมิตรและท่านที่เคารพนับถือ<br class="sm:hidden">ร่วมอนุโมธนาการอุปสมบทในครั้งนี้
       </p>
       <p class="mt-3 text-center text-sm">(ขออภัยหากมิได้ไปเรียนเชิญด้วยตนเอง)</p>
     </div>
@@ -110,26 +110,46 @@ export default {
     return {
       scheduleTableItems10: [
         {
-          dateTime: Date.parse('2022-04-10T16:00:00'),
-          timeText: '๑๖.๐๐',
-          description: 'ประกอบพิธีปลงผมนาค',
+          dateTime: Date.parse('2022-04-10T15:00:00'),
+          timeText: '๑๕.๐๐',
+          description: 'ประกอบพิธีปลงผมนาค ขอขมาผู้ใหญ่',
         },
       ],
       scheduleTableItems11: [
       {
+          dateTime: Date.parse('2022-04-11T08:00:00'),
+          timeText: '๐๘.๐๐',
+          description: 'ตั้งขบวนส่งนาค',
+        },
+        {
+          dateTime: Date.parse('2022-04-11T08:30:00'),
+          timeText: '๐๘.๓๐',
+          description: 'เริ่มตั้งขบวนแห่นาคเข้าโบสถ์',
+        },
+        {
           dateTime: Date.parse('2022-04-11T09:00:00'),
           timeText: '๐๙.๐๐',
-          description: 'ตั้งขบวนส่งนาค',
+          description: 'ผู้บรรพชาอุปสมบท เข้าโบสถ์เพื่อทำพิธีทางศาสนา',
         },
         {
           dateTime: Date.parse('2022-04-11T10:00:00'),
           timeText: '๑๐.๐๐',
-          description: 'นำนาคเข้าพิธีอุปสมบท',
+          description: 'เป็นพระภิกษุใหม่เรียบร้อย',
+        },
+        {
+          dateTime: Date.parse('2022-04-11T10:30:00'),
+          timeText: '๑๐.๓๐',
+          description: 'พระสงฆ์ สวดเจริญพุทธมนต์',
         },
         {
           dateTime: Date.parse('2022-04-11T11:00:00'),
           timeText: '๑๑.๐๐',
-          description: 'ถวายภัตตาคารเพล',
+          description: 'ตักบาตรเลี้ยงพระใหม่',
+        },
+        {
+          dateTime: Date.parse('2022-04-11T12:00:00'),
+          timeText: '๑๒.๐๐',
+          description: 'เลี้ยงฉลองพระใหม่ เชิญแขกร่วมรับประทานอาหาร',
         }
       ],
       currrentTime: new Date().toString('HH:mm:ss'),
