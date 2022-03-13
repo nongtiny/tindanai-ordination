@@ -32,7 +32,7 @@
           isPassed(scheduleTableItems10[0].dateTime) ? 'text-slate-200' : null,
         ]"
       >
-        วันเสาร์ที่ ๑๐ เมษายน พ.ศ. ๒๕๖๕
+        วันอาทิตย์ที่ ๑๐ เมษายน พ.ศ. ๒๕๖๕
       </p>
       <div class="mt-4" aria-label="schedule-table">
         <div
@@ -63,7 +63,7 @@
             isPassed(scheduleTableItems11[scheduleTableItems11.length - 1].dateTime) ? 'text-slate-200' : null,
           ]"
         >
-          วันเสาร์ที่ ๑๑ เมษายน พ.ศ. ๒๕๖๕
+          วันจันทร์ที่ ๑๑ เมษายน พ.ศ. ๒๕๖๕
         </p>
         <div class="mt-4" aria-label="schedule-table">
           <div
