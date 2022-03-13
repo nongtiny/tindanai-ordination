@@ -112,7 +112,7 @@ export default {
         {
           dateTime: Date.parse('2022-04-10T16:00:00'),
           timeText: '๑๖.๐๐',
-          description: 'ประกอบพพิธีขอบิดา มารดา ญาติผู้ใหญ่ และปลงผมนาค',
+          description: 'ประกอบพิธีปลงผมนาค',
         },
       ],
       scheduleTableItems11: [
