@@ -6,8 +6,8 @@
     >
     <div class="absolute min-w-full h-full bg-gradient-to-b from-transparent to-orange-100"></div>
 
-    <div id="content" class="relative w-full max-w-4xl mx-auto flex flex-col items-center justify-around p-4 sm:p-8 z-10">
-      <div class="relative w-60 h-60 rounded-full overflow-hidden shadow-md">
+    <div id="content" class="relative w-full h-5/6 max-w-4xl mx-auto flex flex-col items-center justify-around p-4 sm:p-8 z-10">
+      <div class="relative w-60 h-60 rounded-full overflow-hidden shadow-md" style="min-height: 15rem;">
         <img
           :src="require('../assets/me.jpg')"
           class="absolute object-cover rounded-full"
@@ -24,11 +24,7 @@
         </div>
 
         <p class="text-3xl font-medium mt-4">ขอกราบลาอุปสมบท</p>
-        <p class="text-xl mt-4">วันเสาร์ที่ ๙ เมษายน พ.ศ. ๒๕๖๕</p>
-        <div class="mt-3 text-center">
-          <!-- <a target="_blank" href="https://goo.gl/maps/L2reB1f7tVFiGJ7y7">ณ วัดโพธิ์พุฒตาล</a>
-          <p>ซอย เอกชัย ๑๐๙ แขวง บางบอน</p>
-          <p>เขต บางบอน จังหวัด กรุงเทพมหานคร</p> -->
+        <div class="mt-4 text-center">
            กรรมใดที่ผู้อุปสมบทได้ล่วงเกินต่อท่านด้วย<br class="sm:hidden">
            กายกรรม วจีกรรม มโนกรรม<br>
            ขอได้โปรดอโหสิกรรมนั้นให้แก่ผู้อุปสมบทด้วยเทอญ
@@ -44,6 +40,6 @@
   width: 100%;
   top: 0;
   left: 0;
-  height: min(calc(80vh + 20px), 590px);
+  height: min(calc(80vh + 20px), 620px);
 }
 </style>

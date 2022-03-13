@@ -1,16 +1,53 @@
 <template>
   <div id="app">
-    <div id="my-scrollbar">
-      <HelloHero id="fixed"></HelloHero>
-      <ContentWrapper
-        id="content-wrapper-el"
-        :is-scroll-to="isScrollTo"
-      ></ContentWrapper>
-    </div>
+    <transition name="page">
+      <div v-show="!isLoadAssets" id="my-scrollbar">
+        <HelloHero id="fixed"></HelloHero>
+        <ContentWrapper
+          id="content-wrapper-el"
+          :is-scroll-to="isScrollTo"
+        ></ContentWrapper>
+      </div>
+    </transition>
   </div>
 </template>
 
 <script>
+/**
+ * When there's only one statement, you can drop the {} and the return
+ * x => y is equivalent to x => { return y; }
+ * @param {string} path
+ */
+function checkImageOnLoad(path) {
+    // If have error more than 10 then that mean the picture is undefined
+    // else maybe have a problem while fetching
+    return new Promise((resolve, reject) => {
+        const img = new Image();
+        img.onload = () => resolve();
+        img.onerror = () => {
+            reject('img404');
+        };
+        img.src = path;
+    });
+}
+
+/**
+     * Load image from array of image path
+     * @param {string[]} paths
+     */
+async function loadImg(paths) {
+    let response;
+    await Promise.all(paths.map(checkImageOnLoad))
+        .then(() => {
+            response = true;
+        })
+        .catch((err) => {
+            response = err;
+            return Promise.reject(err);
+        });
+    return response;
+}
+
 import HelloHero from './components/HelloHero.vue';
 import ContentWrapper from './components/ContentWrapper.vue';
 import Scrollbar from 'smooth-scrollbar';
@@ -22,10 +59,23 @@ export default {
   },
   data() {
     return {
+      isLoadAssets: true,
       scrollbar: null,
       fixedElem: null,
       contentWrapperEl: null,
       isScrollTo: false
+    }
+  },
+  async created() {
+    this.isLoadAssets = true
+    try {
+      await loadImg([
+        require('@/assets/bg.webp'),
+        require('@/assets/me.jpg'),
+      ]);
+        this.isLoadAssets = false;
+    } catch {
+        this.isLoadAssets = false;
     }
   },
   mounted() {

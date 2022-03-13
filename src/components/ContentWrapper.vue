@@ -3,7 +3,8 @@
     :class="[
       'content-wrapper bg-white rounded-t-2xl',
       isScrollTo ? 'custom-shadow' : null
-    ]">
+    ]"
+  >
     <div class="w-full max-w-4xl mx-auto px-4 py-8">
       <h5
         :class="[
@@ -25,17 +26,25 @@
           (แผนที่ คลิก)
         </a>
       </div>
-      <div class="mt-10" aria-label="schedule-table">
+      <p
+        :class="[
+          'text-xl text-center mt-10',
+          isPassed(scheduleTableItems10[0].dateTime) ? 'text-slate-200' : null,
+        ]"
+      >
+        วันเสาร์ที่ ๑๐ เมษายน พ.ศ. ๒๕๖๕
+      </p>
+      <div class="mt-4" aria-label="schedule-table">
         <div
-          v-for="(scheduleItem, index) in scheduleTableItems"
+          v-for="(scheduleItem, index) in scheduleTableItems10"
           :key="`scheduleItem${index}`"
           :class="[
             'grid grid-cols-2 py-3 divide-slate-800',
             index === 0 ? 'border-y' : 'border-b',
             isPassed(scheduleItem.dateTime) ? 'text-slate-200' : null,
             isPassed(scheduleItem.dateTime)
-            && scheduleTableItems[index + 1]
-            && isCurrent(scheduleItem.dateTime, scheduleTableItems[index + 1].dateTime)
+            && scheduleTableItems10[index + 1]
+            && isCurrent(scheduleItem.dateTime, scheduleTableItems10[index + 1].dateTime)
               ? 'text-orange-400'
               : null,
           ]"
@@ -46,6 +55,38 @@
           <p aria-label="description">
             {{ scheduleItem.description }}
           </p>
+        </div>
+
+        <p
+          :class="[
+            'text-xl text-center mt-10',
+            isPassed(scheduleTableItems11[scheduleTableItems11.length - 1].dateTime) ? 'text-slate-200' : null,
+          ]"
+        >
+          วันเสาร์ที่ ๑๑ เมษายน พ.ศ. ๒๕๖๕
+        </p>
+        <div class="mt-4" aria-label="schedule-table">
+          <div
+            v-for="(scheduleItem, index) in scheduleTableItems11"
+            :key="`scheduleItem${index}`"
+            :class="[
+              'grid grid-cols-2 py-3 divide-slate-800',
+              index === 0 ? 'border-y' : 'border-b',
+              isPassed(scheduleItem.dateTime) ? 'text-slate-200' : null,
+              isPassed(scheduleItem.dateTime)
+              && scheduleTableItems11[index + 1]
+              && isCurrent(scheduleItem.dateTime, scheduleTableItems11[index + 1].dateTime)
+                ? 'text-orange-400'
+                : null,
+            ]"
+          >
+            <p class="justify-self-center">
+              เวลา {{ scheduleItem.timeText }}
+            </p>
+            <p aria-label="description">
+              {{ scheduleItem.description }}
+            </p>
+          </div>
         </div>
       </div>
       <p class="mt-10 text-center">
@@ -67,26 +108,28 @@ export default {
   },
   data() {
     return {
-      scheduleTableItems: [
+      scheduleTableItems10: [
         {
-          dateTime: Date.parse('2022-03-13T01:16:00'),
-          timeText: '๐๗.๐๐',
-          description: 'พิธีปลงผมนาค',
+          dateTime: Date.parse('2022-04-10T16:00:00'),
+          timeText: '๑๖.๐๐',
+          description: 'ประกอบพพิธีขอบิดา มารดา ญาติผู้ใหญ่ และปลงผมนาค',
         },
-        {
-          dateTime: Date.parse('2022-03-13T01:17:00'),
-          timeText: '๐๘.๐๐',
-          description: 'พิธีปลงผมนาค พิธีปลงผมนาค พิธีปลงผมนาค',
-        },
-        {
-          dateTime: Date.parse('2022-03-13T01:17:30'),
+      ],
+      scheduleTableItems11: [
+      {
+          dateTime: Date.parse('2022-04-11T09:00:00'),
           timeText: '๐๙.๐๐',
-          description: 'พิธีปลงผมนาค',
+          description: 'ตั้งขบวนส่งนาค',
         },
         {
-          dateTime: Date.parse('2022-03-13T01:17:50'),
-          timeText: '๑๐.๓๐',
-          description: 'พิธีปลงผมนาค',
+          dateTime: Date.parse('2022-04-11T10:00:00'),
+          timeText: '๑๐.๐๐',
+          description: 'นำนาคเข้าพิธีอุปสมบท',
+        },
+        {
+          dateTime: Date.parse('2022-04-11T11:00:00'),
+          timeText: '๑๑.๐๐',
+          description: 'ถวายภัตตาคารเพล',
         }
       ],
       currrentTime: new Date().toString('HH:mm:ss'),
@@ -101,19 +144,29 @@ export default {
     this.interval = setInterval(this.setCurrentTime, 1000)
   },
   computed: {
+    isDate10April() {
+      return Date.today().equals(Date.parse('2022-04-10'))
+    },
+    isDate11April() {
+      return Date.today().equals(Date.parse('2022-04-11'))
+    },
     dateTimeNow() {
       return Date.parse(`${Date.today().toString('yyyy-MM-dd')}T${this.currrentTime}`)
     },
     isAllDone() {
-      return this.isPassed(this.scheduleTableItems[this.scheduleTableItems.length - 1].dateTime)
+      if (this.isDate10April) {
+        return this.isPassed(this.scheduleTableItems10[this.scheduleTableItems10.length - 1].dateTime)
+      }
+      if (this.isDate11April) {
+        return this.isPassed(this.scheduleTableItems11[this.scheduleTableItems11.length - 1].dateTime)
+      }
+      return false;
     },
   },
   methods: {
     setCurrentTime() {
-      console.log('in sets')
       this.currrentTime = new Date().toString('HH:mm:ss');
       if (this.isAllDone) {
-      console.log('out sets')
         clearInterval(this.interval)
       }
     },
@@ -132,7 +185,7 @@ export default {
 .content-wrapper {
   position: relative;
   z-index: 2;
-  margin-top: min(80vh, 570px);
+  margin-top: min(80vh, 600px);
   min-height: 60vh;
   display: flex;
   align-items: center;
