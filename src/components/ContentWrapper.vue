@@ -29,22 +29,22 @@
       <p
         :class="[
           'text-xl text-center mt-10',
-          isPassed(scheduleTableItems10[0].dateTime) ? 'text-slate-200' : null,
+          isPassed(scheduleTableItems9[0].dateTime) ? 'text-slate-200' : null,
         ]"
       >
-        วันอาทิตย์ที่ ๑๐ เมษายน พ.ศ. ๒๕๖๕
+        วันเสาร์ที่ ๙ เมษายน พ.ศ. ๒๕๖๕
       </p>
       <div class="mt-4" aria-label="schedule-table">
         <div
-          v-for="(scheduleItem, index) in scheduleTableItems10"
+          v-for="(scheduleItem, index) in scheduleTableItems9"
           :key="`scheduleItem${index}`"
           :class="[
             'grid grid-cols-2 py-3 divide-slate-800',
             index === 0 ? 'border-y' : 'border-b',
             isPassed(scheduleItem.dateTime) ? 'text-slate-200' : null,
             isPassed(scheduleItem.dateTime)
-            && scheduleTableItems10[index + 1]
-            && isCurrent(scheduleItem.dateTime, scheduleTableItems10[index + 1].dateTime)
+            && scheduleTableItems9[index + 1]
+            && isCurrent(scheduleItem.dateTime, scheduleTableItems9[index + 1].dateTime)
               ? 'text-orange-400'
               : null,
           ]"
@@ -60,22 +60,22 @@
         <p
           :class="[
             'text-xl text-center mt-10',
-            isPassed(scheduleTableItems11[scheduleTableItems11.length - 1].dateTime) ? 'text-slate-200' : null,
+            isPassed(scheduleTableItems10[scheduleTableItems10.length - 1].dateTime) ? 'text-slate-200' : null,
           ]"
         >
-          วันจันทร์ที่ ๑๑ เมษายน พ.ศ. ๒๕๖๕
+          วันอาทิตย์ที่ ๑๐ เมษายน พ.ศ. ๒๕๖๕
         </p>
         <div class="mt-4" aria-label="schedule-table">
           <div
-            v-for="(scheduleItem, index) in scheduleTableItems11"
+            v-for="(scheduleItem, index) in scheduleTableItems10"
             :key="`scheduleItem${index}`"
             :class="[
               'grid grid-cols-2 py-3 divide-slate-800',
               index === 0 ? 'border-y' : 'border-b',
               isPassed(scheduleItem.dateTime) ? 'text-slate-200' : null,
               isPassed(scheduleItem.dateTime)
-              && scheduleTableItems11[index + 1]
-              && isCurrent(scheduleItem.dateTime, scheduleTableItems11[index + 1].dateTime)
+              && scheduleTableItems10[index + 1]
+              && isCurrent(scheduleItem.dateTime, scheduleTableItems10[index + 1].dateTime)
                 ? 'text-orange-400'
                 : null,
             ]"
@@ -108,47 +108,37 @@ export default {
   },
   data() {
     return {
-      scheduleTableItems10: [
+      scheduleTableItems9: [
         {
-          dateTime: Date.parse('2022-04-10T15:00:00'),
-          timeText: '๑๕.๐๐',
+          dateTime: Date.parse('2022-04-09T16:00:00'),
+          timeText: '๑๖.๐๐',
           description: 'ประกอบพิธีปลงผมนาค ขอขมาผู้ใหญ่',
         },
       ],
-      scheduleTableItems11: [
-      {
-          dateTime: Date.parse('2022-04-11T08:00:00'),
-          timeText: '๐๘.๐๐',
-          description: 'ตั้งขบวนส่งนาค',
-        },
+      scheduleTableItems10: [
         {
-          dateTime: Date.parse('2022-04-11T08:30:00'),
-          timeText: '๐๘.๓๐',
+          dateTime: Date.parse('2022-04-10T08:00:00'),
+          timeText: '๐๘.๐๐',
           description: 'เริ่มตั้งขบวนแห่นาคเข้าโบสถ์',
         },
         {
-          dateTime: Date.parse('2022-04-11T09:00:00'),
-          timeText: '๐๙.๐๐',
+          dateTime: Date.parse('2022-04-10T08:30:00'),
+          timeText: '๐๘.๓๐',
           description: 'ผู้บรรพชาอุปสมบท เข้าโบสถ์เพื่อทำพิธีทางศาสนา',
         },
         {
-          dateTime: Date.parse('2022-04-11T10:00:00'),
-          timeText: '๑๐.๐๐',
+          dateTime: Date.parse('2022-04-10T10:00:00'),
+          timeText: '๐๙.๓๐',
           description: 'เป็นพระภิกษุใหม่เรียบร้อย',
         },
         {
-          dateTime: Date.parse('2022-04-11T10:30:00'),
+          dateTime: Date.parse('2022-04-10T10:30:00'),
           timeText: '๑๐.๓๐',
-          description: 'พระสงฆ์ สวดเจริญพุทธมนต์',
+          description: 'ทำบุญเลี้ยงพระเพล',
         },
         {
-          dateTime: Date.parse('2022-04-11T11:00:00'),
+          dateTime: Date.parse('2022-04-10T11:00:00'),
           timeText: '๑๑.๐๐',
-          description: 'ตักบาตรเลี้ยงพระใหม่',
-        },
-        {
-          dateTime: Date.parse('2022-04-11T12:00:00'),
-          timeText: '๑๒.๐๐',
           description: 'เลี้ยงฉลองพระใหม่ เชิญแขกร่วมรับประทานอาหาร',
         }
       ],
@@ -164,21 +154,21 @@ export default {
     this.interval = setInterval(this.setCurrentTime, 1000)
   },
   computed: {
+    isDate9April() {
+      return Date.today().equals(Date.parse('2022-04-09'))
+    },
     isDate10April() {
       return Date.today().equals(Date.parse('2022-04-10'))
-    },
-    isDate11April() {
-      return Date.today().equals(Date.parse('2022-04-11'))
     },
     dateTimeNow() {
       return Date.parse(`${Date.today().toString('yyyy-MM-dd')}T${this.currrentTime}`)
     },
     isAllDone() {
+      if (this.isDate9April) {
+        return this.isPassed(this.scheduleTableItems9[this.scheduleTableItems9.length - 1].dateTime)
+      }
       if (this.isDate10April) {
         return this.isPassed(this.scheduleTableItems10[this.scheduleTableItems10.length - 1].dateTime)
-      }
-      if (this.isDate11April) {
-        return this.isPassed(this.scheduleTableItems11[this.scheduleTableItems11.length - 1].dateTime)
       }
       return false;
     },
