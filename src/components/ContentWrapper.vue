@@ -134,7 +134,7 @@ export default {
         {
           dateTime: Date.parse('2022-04-10T10:30:00'),
           timeText: '๑๐.๓๐',
-          description: 'ทำบุญเลี้ยงพระเพล',
+          description: 'ทำบุญตักบาตรพระ',
         },
         {
           dateTime: Date.parse('2022-04-10T11:00:00'),
